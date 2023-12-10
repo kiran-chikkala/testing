@@ -1,0 +1,10 @@
+.large {
+  width: 97% !important;
+  padding: 10px 5px !important;
+  border-radius: 5px;
+  color: black !important;
+}
+.small {
+  font-weight: bold;
+  color: black !important;
+}
