@@ -1,0 +1,10 @@
+.tabsContainer {
+  border: 1px grey !important;
+  border-radius: 20px !important;
+}
+
+.tabstyle {
+  border-radius: 20px !important;
+  color: white !important;
+  background-color: #1976d2 !important;
+}

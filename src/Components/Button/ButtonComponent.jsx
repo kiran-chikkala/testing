@@ -1,34 +1,25 @@
 import React from "react";
 import LoadingButton from "@mui/lab/LoadingButton";
 import PropTypes from "prop-types";
-import "./button.css";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { purple, lime, pink } from "@mui/material/colors";
-const theme = createTheme({
-  palette: {
-    primary: lime,
-  },
-});
+// import "./button.css";
 
 const ButtonComponent = (props) => {
   const { label, variant, size, loading, disabled, handleClick } = props;
   return (
-    <ThemeProvider theme={theme}>
-      <div className={size}>
-        <LoadingButton
-          variant={variant}
-          size={size}
-          className={size}
-          loading={loading}
-          disabled={disabled}
-          disableElevation
-          disableRipple
-          onClick={() => handleClick()}
-        >
-          {label}
-        </LoadingButton>
-      </div>
-    </ThemeProvider>
+    <div>
+      <LoadingButton
+        variant={variant}
+        size={size}
+        className="button-default-style "
+        loading={loading}
+        disabled={disabled}
+        disableElevation
+        disableRipple
+        onClick={() => handleClick()}
+      >
+        {label}
+      </LoadingButton>
+    </div>
   );
 };
 ButtonComponent.prototype = {

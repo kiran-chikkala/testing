@@ -1,0 +1,20 @@
+.container {
+  width: 100%;
+  position: relative;
+  height: 100%;
+}
+.container img {
+  width: 100%;
+}
+.information {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+
+  font-weight: 600;
+  top: 50%;
+  left: 50%;
+  font-size: 30px;
+  transform: translate(-50%, -50%);
+}

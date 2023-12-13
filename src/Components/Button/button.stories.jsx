@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonComponent from "./ButtonComponent";
+import ButtonComponent from "../Button/ButtonComponent";
 
 export default {
   title: "Components/Button",
@@ -9,7 +9,12 @@ export default {
 const Template = (args) => <ButtonComponent {...args} />;
 
 export const Basic = Template.bind({});
-Basic.args = { variant: "contained", label: "contained", disabled: false };
+Basic.args = {
+  variant: "contained",
+  label: "contained",
+  disabled: false,
+  size: "small",
+};
 
 export const Text = Template.bind({});
 Text.args = { variant: "text", label: "text", disabled: false };
