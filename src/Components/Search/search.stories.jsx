@@ -6,7 +6,7 @@ export default {
   component: SearchBar,
 };
 
-export const Template = (args) => <SearchBar {...args} />;
+const Template = (args) => <SearchBar {...args} />;
 
 export const Input = Template.bind({});
 Input.args = {
