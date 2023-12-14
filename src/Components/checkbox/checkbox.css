@@ -1,0 +1,4 @@
+.list_rel {
+  display: flex;
+  flex-direction: column;
+}

@@ -9,6 +9,7 @@ import HorizontalTab from "./Components/Tab/HorizontalTab";
 import BackGroundImage from "./Components/image/BackGroundImage";
 import ListLoading from "./Components/ListLoading/ListLoading";
 import PostLoading from "./Components/PostLoading/PostLoading";
+import CheckBoxComponent from "./Components/checkbox/CheckBoxComponent";
 
 const StyledDiv = styled.div`
   width: 100%;
@@ -76,7 +77,20 @@ function App() {
           Find Friend
           <PostLoading loadingConfig={loadingConfig} width="20%" />
         </div>
-        <div label="Find Request"> Find Request</div>
+        <div label="Find Request">
+          {" "}
+          Find Request
+          <CheckBoxComponent
+            relationConfing={[
+              { label: "Friend", disabled: true },
+              { label: "Classmate", disabled: false },
+              { label: "Relative", disabled: false },
+              { label: "Officemate", disabled: false },
+              { label: "Party", disabled: false },
+              { label: "Org", disabled: false },
+            ]}
+          />
+        </div>
       </HorizontalTab>
     </div>
   );
