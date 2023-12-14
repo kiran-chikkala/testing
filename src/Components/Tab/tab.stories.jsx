@@ -1,5 +1,7 @@
 import React from "react";
 import HorizontalTab from "../Tab/HorizontalTab";
+import "../Tab/horizontaltab.css";
+
 export default {
   Title: 'Tab"',
   component: HorizontalTab,
@@ -11,9 +13,7 @@ Tab.args = {
     { label: "Friend" },
     { label: "Find Friend" },
     { label: "Find Request" },
+    { label: "Find Request" },
   ],
   children: [],
 };
-<div label="Friend"></div>;
-<div label="Find Friend"></div>;
-<div label=" Find Friend"></div>;

@@ -1,0 +1,21 @@
+.skeleton_body {
+  display: flex;
+  margin-bottom: 12px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 22px;
+  padding-right: 18px;
+}
+.Personal_information {
+  width: 100%;
+  height: 100%;
+  margin-left: 45px;
+}
+.profile_Name {
+  width: 50%;
+  height: 20px;
+}
+.relation {
+  width: 30%;
+  height: 20px;
+}

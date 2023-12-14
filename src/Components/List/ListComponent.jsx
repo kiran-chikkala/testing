@@ -124,7 +124,7 @@ const ListComponent = ({
             actionButtonItem.map((action) => (
               <ButtonComponent
                 label={action.label}
-                varient="contained"
+                variant="contained"
                 handleClick={() => actionButtonCallbk(action)}
               />
             ))

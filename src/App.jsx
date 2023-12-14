@@ -7,13 +7,18 @@ import React from "react";
 import styled from "styled-components";
 import HorizontalTab from "./Components/Tab/HorizontalTab";
 import BackGroundImage from "./Components/image/BackGroundImage";
+import ListLoading from "./Components/ListLoading/ListLoading";
+import PostLoading from "./Components/PostLoading/PostLoading";
 
 const StyledDiv = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
 `;
-
+const loadingConfig = {
+  isLoading: false,
+  loadingItems: 8,
+};
 function App() {
   const users = useUsers(); // api custom hook
 
@@ -44,23 +49,33 @@ function App() {
               updateChange={(val) => console.log(val)}
               searchInputValue=""
             />
+
             <StyledDiv>
-              {users.map((item) => (
-                <ListComponent
-                  key={item.id}
-                  user={item}
-                  actionButtonConfig={actionButtonConfig}
-                  handleClick={() => console.log("click")}
-                  actionItems={[
-                    { label: "Profile", value: "profile" },
-                    { label: "Unfollow Profile", value: "unfollow" },
-                  ]}
-                />
-              ))}
+              {users.length !== 0 ? (
+                <>
+                  {users.map((item) => (
+                    <ListComponent
+                      key={item.id}
+                      user={item}
+                      actionButtonConfig={actionButtonConfig}
+                      handleClick={() => console.log("click")}
+                      actionItems={[
+                        { label: "Profile", value: "profile" },
+                        { label: "Unfollow Profile", value: "unfollow" },
+                      ]}
+                    />
+                  ))}
+                </>
+              ) : (
+                <ListLoading loadingConfig={loadingConfig} />
+              )}
             </StyledDiv>
           </>
         </div>
-        <div label="Find Friend">Find Friend</div>
+        <div label="Find Friend">
+          Find Friend
+          <PostLoading loadingConfig={loadingConfig} width="20%" />
+        </div>
         <div label="Find Request"> Find Request</div>
       </HorizontalTab>
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import LoadingButton from "@mui/lab/LoadingButton";
 import PropTypes from "prop-types";
-// import "./button.css";
+import "../Button/button.css";
 
 const ButtonComponent = (props) => {
   const { label, variant, size, loading, disabled, handleClick } = props;
