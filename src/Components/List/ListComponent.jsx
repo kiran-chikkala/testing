@@ -21,7 +21,7 @@ const ListComponent = ({
   userArray,
   actionItems,
   flag,
-  loadingConfig,
+
   UyniteTickconfig = {},
   actionButtonConfig = {},
 }) => {
@@ -34,6 +34,10 @@ const ListComponent = ({
     actionButtonCallbk,
   } = actionButtonConfig;
 
+  let loadingConfig = {
+    isLoading: true,
+    loadingItems: 8,
+  };
   if (!flag && userArray.length === 0) {
     return <ListLoading loadingConfig={loadingConfig} />;
   } else if (flag && userArray.length === 0) {

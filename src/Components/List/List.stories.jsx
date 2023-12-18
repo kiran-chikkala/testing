@@ -4,7 +4,7 @@ import ListComponent from "../List/ListComponent";
 const Template = (args) => <ListComponent {...args} />;
 
 export default {
-  title: "Components/List",
+  title: "Components/ListComponet",
   component: ListComponent,
 };
 
@@ -33,10 +33,7 @@ List.args = {
       },
     },
   ],
-  loadingConfig: {
-    isLoading: true,
-    loadingItems: 8,
-  },
+
   actionItems: [
     { label: "Profile", value: "profile" },
     { label: "Unfollow Profile", value: "unfollow" },

@@ -33,10 +33,6 @@ function App() {
   const handleActionBtnClick = () => {
     console.log("click");
   };
-  let loadingConfig = {
-    isLoading: true,
-    loadingItems: 8,
-  };
 
   const actionButtonConfig = {
     actionButtonEnable: false,
@@ -64,7 +60,6 @@ function App() {
               />
               <StyledDiv>
                 <ListComponent
-                  loadingConfig={loadingConfig}
                   userArray={Friends}
                   flag={userDataReceived}
                   actionButtonConfig={actionButtonConfig}
