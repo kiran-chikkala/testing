@@ -7,7 +7,7 @@ export default {
 const CheckBox = (args) => <CheckBoxComponent {...args} />;
 export const Check = CheckBox.bind({});
 Check.args = {
-  relationConfing: [
+  checkBoxList: [
     { label: "Friend", disabled: true },
     { label: "Classmate", disabled: false },
     { label: "Relative", disabled: false },

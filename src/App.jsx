@@ -1,30 +1,41 @@
-import { Button, IconButton } from "@mui/material";
 import "./App.css";
 import ListComponent from "./Components/List/ListComponent";
 import SearchBar from "./Components/Search/SearchBar";
-import useUsers from "./hooks/useUsers";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import HorizontalTab from "./Components/Tab/HorizontalTab";
-import BackGroundImage from "./Components/image/BackGroundImage";
-import ListLoading from "./Components/ListLoading/ListLoading";
-import PostLoading from "./Components/PostLoading/PostLoading";
 import CheckBoxComponent from "./Components/checkbox/CheckBoxComponent";
-
+import AvatarComponent from "./Components/AvatarGroup/AvatarComponent";
+import axios from "axios";
+import { USER_API } from "./utiles/Api";
 const StyledDiv = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
 `;
-const loadingConfig = {
-  isLoading: false,
-  loadingItems: 8,
-};
+
 function App() {
-  const users = useUsers(); // api custom hook
+  const [Friends, setFriends] = useState([]);
+  const [userDataReceived, setUserDataReceived] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(USER_API)
+      .then((res) => {
+        setFriends(res?.data?.users);
+        setUserDataReceived(true);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   const handleActionBtnClick = () => {
     console.log("click");
+  };
+  let loadingConfig = {
+    isLoading: true,
+    loadingItems: 8,
   };
 
   const actionButtonConfig = {
@@ -33,74 +44,59 @@ function App() {
     actionButtonCallbk: handleActionBtnClick,
   };
   return (
-    <div>
-      {/* <BackGroundImage description="Warning" content="No post yet" /> */}
-      <HorizontalTab
-        tablist={[
-          { label: "Friend" },
-          { label: "Find Friend" },
-          { label: "Find Request" },
-        ]}
-      >
-        <div label="Friend">
-          <>
-            <SearchBar
-              width={"100%"}
-              placeholder="Search..."
-              updateChange={(val) => console.log(val)}
-              searchInputValue=""
+    <>
+      <div>
+        {/* <BackGroundImage description="Warning" content="No post yet" /> */}
+        <HorizontalTab
+          tablist={[
+            { label: "Friend" },
+            { label: "Find Friend" },
+            { label: "Find Request" },
+          ]}
+        >
+          <div label="Friend">
+            <>
+              <SearchBar
+                width={"100%"}
+                placeholder="Search..."
+                updateChange={(val) => console.log(val)}
+                searchInputValue=""
+              />
+              <StyledDiv>
+                <ListComponent
+                  loadingConfig={loadingConfig}
+                  userArray={Friends}
+                  flag={userDataReceived}
+                  actionButtonConfig={actionButtonConfig}
+                  handleClick={() => console.log("click")}
+                  actionItems={[
+                    { label: "Profile", value: "profile" },
+                    { label: "Unfollow Profile", value: "unfollow" },
+                  ]}
+                />
+              </StyledDiv>
+            </>
+          </div>
+          <div label="Find Friend">
+            <AvatarComponent totalAvatar={Friends} />
+          </div>
+          <div label="Find Request">
+            {" "}
+            Find Request
+            <CheckBoxComponent
+              checkBoxList={[
+                { label: "Friend", disabled: true, countries: "hyderabed" },
+                { label: "Classmate", disabled: false, countries: "delhi" },
+                { label: "Relative", disabled: false, countries: "mumbai" },
+                { label: "Officemate", disabled: false, countries: "chennai" },
+                { label: "Party", disabled: false, countries: "goa" },
+                { label: "Org", disabled: false, countries: "jk" },
+              ]}
             />
-
-            <StyledDiv>
-              {users.length !== 0 ? (
-                <>
-                  {users.map((item) => (
-                    <ListComponent
-                      key={item.id}
-                      user={item}
-                      actionButtonConfig={actionButtonConfig}
-                      handleClick={() => console.log("click")}
-                      actionItems={[
-                        { label: "Profile", value: "profile" },
-                        { label: "Unfollow Profile", value: "unfollow" },
-                      ]}
-                    />
-                  ))}
-                </>
-              ) : (
-                <ListLoading loadingConfig={loadingConfig} />
-              )}
-            </StyledDiv>
-          </>
-        </div>
-        <div label="Find Friend">
-          Find Friend
-          <PostLoading loadingConfig={loadingConfig} width="20%" />
-        </div>
-        <div label="Find Request">
-          {" "}
-          Find Request
-          <CheckBoxComponent
-            relationConfing={[
-              { label: "Friend", disabled: true },
-              { label: "Classmate", disabled: false },
-              { label: "Relative", disabled: false },
-              { label: "Officemate", disabled: false },
-              { label: "Party", disabled: false },
-              { label: "Org", disabled: false },
-            ]}
-          />
-        </div>
-      </HorizontalTab>
-    </div>
+          </div>
+        </HorizontalTab>
+      </div>
+    </>
   );
 }
 export default App;
-
-// <Grid container spacing={2}>
-//   {users.map((user) => (
-//     <Grid item key={user.id} xs={12} md={4}>
-//       <CardComponent userinfo={user} />
-//     </Grid>
-//   ))}
-// </Grid>;
