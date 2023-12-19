@@ -21,7 +21,6 @@ const ListComponent = ({
   userArray,
   actionItems,
   flag,
-
   UyniteTickconfig = {},
   actionButtonConfig = {},
 }) => {

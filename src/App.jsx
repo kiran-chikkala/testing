@@ -8,16 +8,47 @@ import CheckBoxComponent from "./Components/checkbox/CheckBoxComponent";
 import AvatarComponent from "./Components/AvatarGroup/AvatarComponent";
 import axios from "axios";
 import { USER_API } from "./utiles/Api";
+import PopOveComponent from "./Components/Popover/PopOverComponent";
 const StyledDiv = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
 `;
-
+const initialCheckBoxList = [
+  {
+    id: 1,
+    label: "Friend",
+    disabled: true,
+    countries: "hyderabed",
+    checked: true,
+  },
+  {
+    id: 2,
+    label: "Classmate",
+    disabled: false,
+    countries: "delhi",
+    checked: false,
+  },
+  { label: "Relative", disabled: false, countries: "mumbai", checked: false },
+  {
+    id: 3,
+    label: "Officemate",
+    disabled: false,
+    countries: "chennai",
+    checked: false,
+  },
+  { id: 4, label: "Party", disabled: false, countries: "goa", checked: false },
+  { id: 5, label: "Org", disabled: false, countries: "jk", checked: false },
+];
 function App() {
   const [Friends, setFriends] = useState([]);
   const [userDataReceived, setUserDataReceived] = useState(false);
-
+  const [checkBoxList, setCheckBoxList] = useState(initialCheckBoxList);
+  // console.log(checkBoxList);
+  const handleCheckChange = (updatedCheckBoxList) => {
+    console.log(updatedCheckBoxList);
+    setCheckBoxList(updatedCheckBoxList);
+  };
   useEffect(() => {
     axios
       .get(USER_API)
@@ -73,20 +104,13 @@ function App() {
             </>
           </div>
           <div label="Find Friend">
-            <AvatarComponent totalAvatar={Friends} />
+            <PopOveComponent />
+            {/* <AvatarComponent totalAvatar={Friends} /> */}
           </div>
           <div label="Find Request">
-            {" "}
-            Find Request
             <CheckBoxComponent
-              checkBoxList={[
-                { label: "Friend", disabled: true, countries: "hyderabed" },
-                { label: "Classmate", disabled: false, countries: "delhi" },
-                { label: "Relative", disabled: false, countries: "mumbai" },
-                { label: "Officemate", disabled: false, countries: "chennai" },
-                { label: "Party", disabled: false, countries: "goa" },
-                { label: "Org", disabled: false, countries: "jk" },
-              ]}
+              checkBoxList={checkBoxList}
+              onCheckChange={handleCheckChange}
             />
           </div>
         </HorizontalTab>
